@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_api_test/app/app_theme.dart';
 import 'package:flutter_api_test/app/routes.dart';
+import 'package:flutter_api_test/providers/home_provider.dart';
 import 'package:flutter_api_test/services/dio_client_provider.dart';
 import 'package:flutter_api_test/services/user_list/user_service.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,11 @@ class App extends StatelessWidget {
             );
             return dioProvider.dio;
           },
+        ),
+        ChangeNotifierProvider(
+          create: (context) => HomeProvider(
+            Provider.of(context, listen: false),
+          ),
         ),
         Provider(
           create: (context) => UserListService(
